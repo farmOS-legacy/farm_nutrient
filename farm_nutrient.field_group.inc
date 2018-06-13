@@ -20,7 +20,7 @@ function farm_nutrient_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_farm_tabs';
   $field_group->data = array(
-    'label' => 'General settings',
+    'label' => 'General',
     'weight' => '4',
     'children' => array(
       0 => 'field_farm_date_range',
@@ -29,6 +29,7 @@ function farm_nutrient_field_group_info() {
     'format_type' => 'field_group_easy_responsive_tabs_nav_item',
     'format_settings' => array(
       'formatter' => '',
+      'label' => 'General',
       'instance_settings' => array(
         'classes' => 'group-farm-general field-group-field_group_easy_responsive_tabs_nav_item',
         'required_fields' => 1,
@@ -74,7 +75,7 @@ function farm_nutrient_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('General settings');
+  t('General');
   t('Tabs');
 
   return $field_groups;
