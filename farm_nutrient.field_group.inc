@@ -50,7 +50,8 @@ function farm_nutrient_field_group_info() {
     'weight' => '4',
     'children' => array(
       0 => 'field_farm_date_range',
-      1 => 'name',
+      1 => 'field_farm_season',
+      2 => 'name',
     ),
     'format_type' => 'field_group_easy_responsive_tabs_nav_item',
     'format_settings' => array(

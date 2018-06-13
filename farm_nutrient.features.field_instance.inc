@@ -129,12 +129,45 @@ function farm_nutrient_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'farm_plan-nutrient-field_farm_season'.
+  $field_instances['farm_plan-nutrient-field_farm_season'] = array(
+    'bundle' => 'nutrient',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Optionally link this plan to a season. You can manage these options in the <a href="/admin/structure/taxonomy/farm_season">Seasons</a> vocabulary.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'farm_plan',
+    'field_name' => 'field_farm_season',
+    'label' => 'Season',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Date range');
   t('Define the date range for this nutrient management plan.');
   t('Files');
   t('Notes');
+  t('Optionally link this plan to a season. You can manage these options in the <a href="/admin/structure/taxonomy/farm_season">Seasons</a> vocabulary.');
+  t('Season');
 
   return $field_instances;
 }
