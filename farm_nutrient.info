@@ -1,0 +1,8 @@
+name = Farm Nutrient
+description = Nutrient management planning module for farmOS.
+core = 7.x
+package = farmOS Contrib
+dependencies[] = entity
+dependencies[] = farm_plan
+features[farm_plan_type][] = nutrient
+features[features_api][] = api:2
