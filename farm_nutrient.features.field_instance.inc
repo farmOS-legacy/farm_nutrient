@@ -34,7 +34,7 @@ function farm_nutrient_field_default_field_instances() {
     'entity_type' => 'farm_plan',
     'field_name' => 'field_farm_date_range',
     'label' => 'Date range',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
