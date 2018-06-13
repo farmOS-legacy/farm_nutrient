@@ -5,3 +5,18 @@
  */
 
 include_once 'farm_nutrient.features.inc';
+
+/**
+ * Implements hook_farm_ui_entity_types().
+ */
+function farm_nutrient_farm_ui_entity_types() {
+  return array(
+    'farm_plan' => array(
+      'nutrient' => array(
+        'label' => t('Nutrient Management Plan'),
+        'label_plural' => t('Nutrient Management Plans'),
+        'view' => 'farm_nutrient_plan',
+      ),
+    ),
+  );
+}
