@@ -20,3 +20,14 @@ function farm_nutrient_farm_ui_entity_types() {
     ),
   );
 }
+
+/**
+ * Implements hook_bootstrap_iconize_text_alter().
+ */
+function farm_nutrient_bootstrap_iconize_text_alter(&$texts) {
+
+  // The Bootstrap theme automatically adds a cog icon to buttons that contain
+  // the string "manage", so we need to explicitly override that here to use
+  // the plus icon (for consistency with other buttons that begin with "Add").
+  $texts['matches'][t('Add nutrient management plan')] = 'plus';
+}
