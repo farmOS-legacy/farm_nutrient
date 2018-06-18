@@ -22,7 +22,6 @@ features[farm_plan_type][] = nutrient
 features[features_api][] = api:2
 features[field_group][] = group_farm_files|farm_plan|nutrient|form
 features[field_group][] = group_farm_general|farm_plan|nutrient|form
-features[field_group][] = group_farm_notes|farm_plan|nutrient|form
 features[field_group][] = group_farm_tabs|farm_plan|nutrient|form
 features[field_instance][] = farm_plan-nutrient-field_farm_date_range
 features[field_instance][] = farm_plan-nutrient-field_farm_files

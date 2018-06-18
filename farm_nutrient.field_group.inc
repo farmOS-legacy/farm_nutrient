@@ -51,45 +51,19 @@ function farm_nutrient_field_group_info() {
     'children' => array(
       0 => 'field_farm_date_range',
       1 => 'field_farm_season',
-      2 => 'name',
+      2 => 'field_farm_notes',
+      3 => 'name',
     ),
     'format_type' => 'field_group_easy_responsive_tabs_nav_item',
     'format_settings' => array(
-      'formatter' => '',
       'label' => 'General',
       'instance_settings' => array(
-        'classes' => 'group-farm-general field-group-field_group_easy_responsive_tabs_nav_item',
         'required_fields' => 1,
+        'classes' => 'group-farm-general field-group-field_group_easy_responsive_tabs_nav_item',
       ),
     ),
   );
   $field_groups['group_farm_general|farm_plan|nutrient|form'] = $field_group;
-
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_farm_notes|farm_plan|nutrient|form';
-  $field_group->group_name = 'group_farm_notes';
-  $field_group->entity_type = 'farm_plan';
-  $field_group->bundle = 'nutrient';
-  $field_group->mode = 'form';
-  $field_group->parent_name = 'group_farm_tabs';
-  $field_group->data = array(
-    'label' => 'Notes',
-    'weight' => '5',
-    'children' => array(
-      0 => 'field_farm_notes',
-    ),
-    'format_type' => 'field_group_easy_responsive_tabs_nav_item',
-    'format_settings' => array(
-      'formatter' => '',
-      'instance_settings' => array(
-        'classes' => 'group-farm-notes field-group-field_group_easy_responsive_tabs_nav_item',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $field_groups['group_farm_notes|farm_plan|nutrient|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -106,7 +80,6 @@ function farm_nutrient_field_group_info() {
     'children' => array(
       0 => 'group_farm_general',
       1 => 'group_farm_files',
-      2 => 'group_farm_notes',
     ),
     'format_type' => 'field_group_easy_responsive_tabs_nav',
     'format_settings' => array(
@@ -132,7 +105,6 @@ function farm_nutrient_field_group_info() {
   // Included for use with string extractors like potx.
   t('Files');
   t('General');
-  t('Notes');
   t('Tabs');
 
   return $field_groups;
