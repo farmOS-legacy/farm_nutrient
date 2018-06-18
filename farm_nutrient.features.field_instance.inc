@@ -10,6 +10,37 @@
 function farm_nutrient_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'farm_plan-nutrient-field_farm_area'.
+  $field_instances['farm_plan-nutrient-field_farm_area'] = array(
+    'bundle' => 'nutrient',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'What areas are part of this plan?',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'farm_plan',
+    'field_name' => 'field_farm_area',
+    'label' => 'Areas',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 9,
+    ),
+  );
+
   // Exported field_instance: 'farm_plan-nutrient-field_farm_date_range'.
   $field_instances['farm_plan-nutrient-field_farm_date_range'] = array(
     'bundle' => 'nutrient',
@@ -70,7 +101,7 @@ function farm_nutrient_field_default_field_instances() {
         'module' => 'file',
         'settings' => array(),
         'type' => 'file_table',
-        'weight' => 3,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'farm_plan',
@@ -107,7 +138,7 @@ function farm_nutrient_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'farm_plan',
@@ -125,7 +156,7 @@ function farm_nutrient_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 7,
+      'weight' => 4,
     ),
   );
 
@@ -162,12 +193,14 @@ function farm_nutrient_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Areas');
   t('Date range');
   t('Define the date range for this nutrient management plan.');
   t('Files');
   t('Notes');
   t('Optionally link this plan to a season. You can manage these options in the <a href="/admin/structure/taxonomy/farm_season">Seasons</a> vocabulary.');
   t('Season');
+  t('What areas are part of this plan?');
 
   return $field_instances;
 }

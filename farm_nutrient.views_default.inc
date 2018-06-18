@@ -114,6 +114,11 @@ function farm_nutrient_views_default_views() {
   $handler->display->display_options['fields']['field_farm_season']['table'] = 'field_data_field_farm_season';
   $handler->display->display_options['fields']['field_farm_season']['field'] = 'field_farm_season';
   $handler->display->display_options['fields']['field_farm_season']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Field: Areas */
+  $handler->display->display_options['fields']['field_farm_area']['id'] = 'field_farm_area';
+  $handler->display->display_options['fields']['field_farm_area']['table'] = 'field_data_field_farm_area';
+  $handler->display->display_options['fields']['field_farm_area']['field'] = 'field_farm_area';
+  $handler->display->display_options['fields']['field_farm_area']['delta_offset'] = '0';
   /* Field: Farm plan: Active */
   $handler->display->display_options['fields']['active']['id'] = 'active';
   $handler->display->display_options['fields']['active']['table'] = 'farm_plan';
@@ -154,6 +159,34 @@ function farm_nutrient_views_default_views() {
   $handler->display->display_options['filters']['name']['expose']['label'] = 'Name';
   $handler->display->display_options['filters']['name']['expose']['operator'] = 'name_op';
   $handler->display->display_options['filters']['name']['expose']['identifier'] = 'name';
+  /* Filter criterion: Field: Season (field_farm_season) */
+  $handler->display->display_options['filters']['field_farm_season_tid']['id'] = 'field_farm_season_tid';
+  $handler->display->display_options['filters']['field_farm_season_tid']['table'] = 'field_data_field_farm_season';
+  $handler->display->display_options['filters']['field_farm_season_tid']['field'] = 'field_farm_season_tid';
+  $handler->display->display_options['filters']['field_farm_season_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_farm_season_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_farm_season_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['operator_id'] = 'field_farm_season_tid_op';
+  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['label'] = 'Season';
+  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['operator'] = 'field_farm_season_tid_op';
+  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['identifier'] = 'field_farm_season_tid';
+  $handler->display->display_options['filters']['field_farm_season_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_farm_season_tid']['vocabulary'] = 'farm_season';
+  $handler->display->display_options['filters']['field_farm_season_tid']['hierarchy'] = 1;
+  /* Filter criterion: Field: Areas (field_farm_area) */
+  $handler->display->display_options['filters']['field_farm_area_tid']['id'] = 'field_farm_area_tid';
+  $handler->display->display_options['filters']['field_farm_area_tid']['table'] = 'field_data_field_farm_area';
+  $handler->display->display_options['filters']['field_farm_area_tid']['field'] = 'field_farm_area_tid';
+  $handler->display->display_options['filters']['field_farm_area_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_farm_area_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_farm_area_tid']['expose']['operator_id'] = 'field_farm_area_tid_op';
+  $handler->display->display_options['filters']['field_farm_area_tid']['expose']['label'] = 'Areas';
+  $handler->display->display_options['filters']['field_farm_area_tid']['expose']['operator'] = 'field_farm_area_tid_op';
+  $handler->display->display_options['filters']['field_farm_area_tid']['expose']['identifier'] = 'field_farm_area_tid';
+  $handler->display->display_options['filters']['field_farm_area_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_farm_area_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_farm_area_tid']['vocabulary'] = 'farm_areas';
+  $handler->display->display_options['filters']['field_farm_area_tid']['hierarchy'] = 1;
   /* Filter criterion: Farm plan: Active */
   $handler->display->display_options['filters']['active']['id'] = 'active';
   $handler->display->display_options['filters']['active']['table'] = 'farm_plan';
@@ -165,19 +198,6 @@ function farm_nutrient_views_default_views() {
   $handler->display->display_options['filters']['active']['expose']['label'] = 'Active';
   $handler->display->display_options['filters']['active']['expose']['operator'] = 'active_op';
   $handler->display->display_options['filters']['active']['expose']['identifier'] = 'active';
-  /* Filter criterion: Field: Season (field_farm_season) */
-  $handler->display->display_options['filters']['field_farm_season_tid']['id'] = 'field_farm_season_tid';
-  $handler->display->display_options['filters']['field_farm_season_tid']['table'] = 'field_data_field_farm_season';
-  $handler->display->display_options['filters']['field_farm_season_tid']['field'] = 'field_farm_season_tid';
-  $handler->display->display_options['filters']['field_farm_season_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_farm_season_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['operator_id'] = 'field_farm_season_tid_op';
-  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['label'] = 'Season';
-  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['operator'] = 'field_farm_season_tid_op';
-  $handler->display->display_options['filters']['field_farm_season_tid']['expose']['identifier'] = 'field_farm_season_tid';
-  $handler->display->display_options['filters']['field_farm_season_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_farm_season_tid']['vocabulary'] = 'farm_season';
-  $handler->display->display_options['filters']['field_farm_season_tid']['hierarchy'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');

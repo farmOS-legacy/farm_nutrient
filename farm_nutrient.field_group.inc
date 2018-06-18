@@ -13,6 +13,34 @@ function farm_nutrient_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_farm_areas|farm_plan|nutrient|form';
+  $field_group->group_name = 'group_farm_areas';
+  $field_group->entity_type = 'farm_plan';
+  $field_group->bundle = 'nutrient';
+  $field_group->mode = 'form';
+  $field_group->parent_name = 'group_farm_tabs';
+  $field_group->data = array(
+    'label' => 'Areas',
+    'weight' => '5',
+    'children' => array(
+      0 => 'field_farm_area',
+      1 => 'field_farm_total_area_outdoor',
+      2 => 'field_farm_total_area_indoor',
+    ),
+    'format_type' => 'field_group_easy_responsive_tabs_nav_item',
+    'format_settings' => array(
+      'formatter' => '',
+      'instance_settings' => array(
+        'classes' => 'group-farm-areas field-group-field_group_easy_responsive_tabs_nav_item',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $field_groups['group_farm_areas|farm_plan|nutrient|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_farm_files|farm_plan|nutrient|form';
   $field_group->group_name = 'group_farm_files';
   $field_group->entity_type = 'farm_plan';
@@ -21,7 +49,7 @@ function farm_nutrient_field_group_info() {
   $field_group->parent_name = 'group_farm_tabs';
   $field_group->data = array(
     'label' => 'Files',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_farm_files',
     ),
@@ -80,6 +108,7 @@ function farm_nutrient_field_group_info() {
     'children' => array(
       0 => 'group_farm_general',
       1 => 'group_farm_files',
+      2 => 'group_farm_areas',
     ),
     'format_type' => 'field_group_easy_responsive_tabs_nav',
     'format_settings' => array(
@@ -103,6 +132,7 @@ function farm_nutrient_field_group_info() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Areas');
   t('Files');
   t('General');
   t('Tabs');
