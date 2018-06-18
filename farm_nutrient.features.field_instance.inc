@@ -191,6 +191,91 @@ function farm_nutrient_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'farm_plan-nutrient-field_farm_total_area_indoor'.
+  $field_instances['farm_plan-nutrient-field_farm_total_area_indoor'] = array(
+    'bundle' => 'nutrient',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'What is the total indoor area under management in this plan?',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'fraction',
+        'settings' => array(
+          'auto_precision' => TRUE,
+          'precision' => 0,
+          'prefix_suffix' => TRUE,
+        ),
+        'type' => 'fraction_decimal',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'farm_plan',
+    'field_name' => 'field_farm_total_area_indoor',
+    'label' => 'Total Indoor Area',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'fraction',
+      'settings' => array(
+        'auto_precision' => 1,
+        'precision' => 0,
+      ),
+      'type' => 'fraction_decimal',
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'farm_plan-nutrient-field_farm_total_area_outdoor'.
+  $field_instances['farm_plan-nutrient-field_farm_total_area_outdoor'] = array(
+    'bundle' => 'nutrient',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'What is the total outdoor area under management in this plan?',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'fraction',
+        'settings' => array(
+          'auto_precision' => TRUE,
+          'precision' => 0,
+          'prefix_suffix' => TRUE,
+        ),
+        'type' => 'fraction_decimal',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'farm_plan',
+    'field_name' => 'field_farm_total_area_outdoor',
+    'label' => 'Total Outdoor Area',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'fraction',
+      'settings' => array(
+        'auto_precision' => 1,
+        'precision' => 0,
+      ),
+      'type' => 'fraction_decimal',
+      'weight' => 10,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Areas');
@@ -200,7 +285,11 @@ function farm_nutrient_field_default_field_instances() {
   t('Notes');
   t('Optionally link this plan to a season. You can manage these options in the <a href="/admin/structure/taxonomy/farm_season">Seasons</a> vocabulary.');
   t('Season');
+  t('Total Indoor Area');
+  t('Total Outdoor Area');
   t('What areas are part of this plan?');
+  t('What is the total indoor area under management in this plan?');
+  t('What is the total outdoor area under management in this plan?');
 
   return $field_instances;
 }
