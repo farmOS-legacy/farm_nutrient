@@ -22,6 +22,83 @@ function farm_nutrient_farm_ui_entity_types() {
 }
 
 /**
+ * Returns a suffix that should be applied to a given field.
+ *
+ * @param string $field_name
+ *   The field name.
+ *
+ * @return string
+ *   Returns a suffix string, which is used in hook_field_widget_form_alter()
+ *   and hook_preprocess_field() below.
+ */
+function farm_nutrient_field_suffix($field_name) {
+  $suffix = '';
+  $system = farm_quantity_system_of_measurement();
+  $field_suffix = array(
+    'field_farm_total_area_outdoor' => array(
+      'us' => 'acres',
+      'metric' => 'hectares',
+    ),
+    'field_farm_total_area_indoor' => array(
+      'us' => 'square feet',
+      'metric' => 'square meters',
+    ),
+  );
+  if (!empty($field_suffix[$field_name][$system])) {
+    $suffix = $field_suffix[$field_name][$system];
+  }
+  return $suffix;
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function farm_nutrient_field_widget_form_alter(&$element, &$form_state, $context) {
+
+  // Add a field suffix to the total outdoor/indoor area field widgets based on
+  // the system of measurement. If this is not one of those fields, bail.
+  if (empty($context['field']['#field_name'])) {
+    return;
+  }
+  $field_name = $context['field']['#field_name'];
+  $fields = array(
+    'field_farm_total_area_outdoor',
+    'field_farm_total_area_indoor',
+  );
+  if (!in_array($field_name, $fields)) {
+    return;
+  }
+
+  // Add the #field_suffix and set #input_group to TRUE.
+  // See https://www.drupal.org/project/bootstrap/issues/2394505
+  $element['decimal']['#field_suffix'] = farm_nutrient_field_suffix($element['#field_name']);
+  $element['decimal']['#input_group'] = TRUE;
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function farm_nutrient_preprocess_field(&$variables, $hook) {
+
+  // Add a field suffix to the total outdoor/indoor area field widgets based on
+  // the system of measurement. If this is not one of those fields, bail.
+  if (empty($variables['element']['#field_name'])) {
+    return;
+  }
+  $field_name = $variables['element']['#field_name'];
+  $fields = array(
+    'field_farm_total_area_outdoor',
+    'field_farm_total_area_indoor',
+  );
+  if (!in_array($field_name, $fields)) {
+    return;
+  }
+
+  // Add the suffix to the display.
+  $variables['items'][0]['#suffix'] = ' ' . farm_nutrient_field_suffix($field_name);
+}
+
+/**
  * Implements hook_bootstrap_iconize_text_alter().
  */
 function farm_nutrient_bootstrap_iconize_text_alter(&$texts) {
