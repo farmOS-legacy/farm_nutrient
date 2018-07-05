@@ -7,6 +7,48 @@
 include_once 'farm_nutrient.features.inc';
 
 /**
+ * Implements hook_help().
+ */
+function farm_nutrient_help($path, $arg) {
+
+  // Add help text to the nutrient plan list page.
+  if ($path == 'farm/plans/nutrient') {
+    $help = '<p>' . t("This page lists all nutrient management plans. Select one from the list below to view it, or click \"Add nutrient management plan\" to create a new one.") . '</p>';
+    $help .= '<p>' . t("Plans can be archived for future reference. To view archived plans, use the \"Filter/sort\" options in the list below.") . '</p>';
+    return $help;
+  }
+
+  // If the path starts with 'farm/plan/%', then load the plan and see if it is
+  // a nutrient plan. If not, bail. Otherwise continue.
+  if (strpos($path, 'farm/plan/%') === 0) {
+    $plan = farm_plan_load($arg[2]);
+    if (empty($plan) || $plan->type != 'nutrient') {
+      return '';
+    }
+  }
+
+  // Add help text to all farm/plan/% paths.
+  switch ($path) {
+
+    // Plan add/edit form.
+    case 'farm/plan/add/nutrient':
+    case 'farm/plan/%/edit':
+      $help = '<p>' . t('Use the form below to define the specifics for this nutrient management plan.') . '</p>';
+      $help .= '<p>' . t('A plan has a name, a date range, a season (optional), and any additional notes you want to include.') . '</p>';
+      $help .= '<p>' . t('You can reference the areas that this plan pertains to, and specify the total outdoor and indoor growing area involved. If your areas are mapped, you can automatically calculate the total area using the buttons provided.') . '</p>';
+      $help .= '<p>' . t('Upload your nutrient management planning files and documents to the "Files" field for easy reference.') . '</p>';
+      return $help;
+
+    // Plan view page.
+    case 'farm/plan/%':
+    case 'farm/plan/%/view':
+      $help = '<p>' . t('This page summarizes the details of this nutrient management plan.') . '</p>';
+      $help .= '<p>' . t('To edit the plan, click the "Settings" tab.') . '</p>';
+      return $help;
+  }
+}
+
+/**
  * Implements hook_farm_ui_entity_types().
  */
 function farm_nutrient_farm_ui_entity_types() {
