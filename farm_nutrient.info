@@ -9,6 +9,7 @@ dependencies[] = farm_area
 dependencies[] = farm_fields
 dependencies[] = farm_plan
 dependencies[] = farm_quick
+dependencies[] = farm_record
 dependencies[] = farm_season
 dependencies[] = farm_soil
 dependencies[] = farm_soil_test
