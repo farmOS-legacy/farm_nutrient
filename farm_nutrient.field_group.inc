@@ -24,8 +24,6 @@ function farm_nutrient_field_group_info() {
     'weight' => '5',
     'children' => array(
       0 => 'field_farm_area',
-      1 => 'field_farm_total_area_outdoor',
-      2 => 'field_farm_total_area_indoor',
     ),
     'format_type' => 'field_group_easy_responsive_tabs_nav_item',
     'format_settings' => array(
