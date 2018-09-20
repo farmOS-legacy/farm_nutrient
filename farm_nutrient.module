@@ -49,6 +49,22 @@ function farm_nutrient_help($path, $arg) {
 }
 
 /**
+ * Implements hook_menu().
+ */
+function farm_nutrient_menu() {
+
+  // Produce safety dashboard.
+  $items['farm/nutrient'] = array(
+    'title' => 'Nutrient Management',
+    'page callback' => 'farm_nutrient_dashboard',
+    'access arguments' => array('access farm dashboard'),
+    'file' => 'farm_nutrient.pages.inc',
+    'type' => MENU_LOCAL_TASK,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_farm_ui_entity_types().
  */
 function farm_nutrient_farm_ui_entity_types() {
