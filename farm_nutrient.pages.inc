@@ -45,7 +45,7 @@ function farm_nutrient_dashboard() {
       'title' => t('Amendment records'),
       'description' => t('Keeping records your soil amendment activities provides useful information to look back on, and is a requirement for some regulatory programs.'),
       'links' => array(
-        l(t('Record amendments to your soil'), 'log/add/farm_input'),
+        l(t('Record an amendment to your soil'), 'farm/quick/amendment'),
         l(t('View all input logs'), 'farm/logs/inputs'),
       ),
     ),
