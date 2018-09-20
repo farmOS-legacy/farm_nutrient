@@ -74,21 +74,18 @@ function farm_nutrient_farm_ui_entity_types() {
  *   and hook_preprocess_field() below.
  */
 function farm_nutrient_field_suffix($field_name) {
-  $suffix = '';
-  $system = farm_quantity_system_of_measurement();
-  $field_suffix = array(
-    'field_farm_total_area_outdoor' => array(
-      'us' => 'acres',
-      'metric' => 'hectares',
-    ),
-    'field_farm_total_area_indoor' => array(
-      'us' => 'square feet',
-      'metric' => 'square meters',
-    ),
-  );
-  if (!empty($field_suffix[$field_name][$system])) {
-    $suffix = $field_suffix[$field_name][$system];
+
+  // Default to 'big' size units.
+  $size = 'big';
+
+  // If the field is for indoor areas, set the size to 'small.
+  if ($field_name == 'field_farm_total_area_indoor') {
+    $size = 'small';
   }
+
+  // Get the default area size units for the given relative size.
+  $suffix = farm_area_default_units('area', $size);
+
   return $suffix;
 }
 
@@ -295,7 +292,7 @@ function farm_nutrient_calculate_area($areas, $type = '') {
   }
 
   // If the area type is invalid, return 0.
-  if (!in_array($type, array('indoor', 'outdoor'))) {
+  if (!in_array($type, array('', 'indoor', 'outdoor'))) {
     return '0';
   }
 
@@ -337,34 +334,23 @@ function farm_nutrient_calculate_area($areas, $type = '') {
   }
 
   // Calculate total area of the filtered areas.
-  $total_area = '0';
+  $area_ids = array();
   foreach ($filtered_areas as $area) {
-    $area_area = farm_area_calculate_area($area->tid);
-    if (function_exists('bcadd')) {
-      $total_area = bcadd($total_area, $area_area);
-    }
-    else {
-      $total_area += $area_area;
-    }
+    $area_ids[] = $area->tid;
   }
+  $total_area = farm_area_calculate_area_multiple($area_ids);
 
   // Return the total, converted to units depending on the system of
-  // measurement and whether it is indoor or outdoor.
-  $system = farm_quantity_system_of_measurement();
-  $units = array(
-    'metric' => array(
-      'indoor' => 'square meters',
-      'outdoor' => 'hectares',
-    ),
-    'us' => array(
-      'indoor' => 'square feet',
-      'outdoor' => 'acres',
-    ),
-  );
-  if (!empty($units[$system][$type])) {
+  // measurement and whether it is indoor (small) or outdoor (big).
+  $size = 'big';
+  if ($type == 'indoor') {
+    $size = 'small';
+  }
+  $units = farm_area_default_units('area', $size);
+  if (!empty($units)) {
 
     // Convert to the proper units.
-    $total_area = farm_area_convert_area_units($total_area, $units[$system][$type]);
+    $total_area = farm_area_convert_area_units($total_area, $units);
 
     // Round to 2 decimal precision.
     $total_area = round($total_area, 2);
