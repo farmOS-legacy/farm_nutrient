@@ -64,9 +64,9 @@ function farm_nutrient_menu() {
 }
 
 /**
- * Implements hook_farm_ui_entity_types().
+ * Implements hook_farm_ui_entities().
  */
-function farm_nutrient_farm_ui_entity_types() {
+function farm_nutrient_farm_ui_entities() {
   return array(
     'farm_plan' => array(
       'nutrient' => array(
